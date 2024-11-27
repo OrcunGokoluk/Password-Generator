@@ -3,6 +3,13 @@ const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"
 
 let password="";
 
+const greenButton = document.getElementById("generatePasswordButton")
+
+const passwordOne = document.getElementById("password-one");
+const passwordTwo = document.getElementById("password-two");
+
+const copiedEl=document.getElementById("copiedEl");
+
 const randomCharGen=()=>
 {
         let randomChar= Math.floor(Math.random()*characters.length);
@@ -10,7 +17,8 @@ const randomCharGen=()=>
 }  
 
 const passwordGenerator=()=>
-{
+{ 
+    password=" ";
     for(let i=0;i<12;i++)
     {
         password+=randomCharGen();
@@ -19,4 +27,21 @@ const passwordGenerator=()=>
     return password;
 }
 
-console.log(passwordGenerator())
+
+greenButton.addEventListener('click', function()
+{
+    passwordOne.textContent = passwordGenerator();
+    passwordTwo.textContent = passwordGenerator();
+})
+
+
+    passwordOne.addEventListener('click', function()
+{
+    navigator.clipboard.writeText(passwordOne.textContent)
+    copiedEl.textContent="Copied to clipboard"
+})
+
+passwordTwo.addEventListener('click', function()
+{
+    navigator.clipboard.writeText(passwordTwo.textContent)
+})
