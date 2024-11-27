@@ -9,6 +9,7 @@ const passwordOne = document.getElementById("password-one");
 const passwordTwo = document.getElementById("password-two");
 
 const copiedEl=document.getElementById("copiedEl");
+const copiedElv2=document.getElementById("copiedElv2");
 
 const randomCharGen=()=>
 {
@@ -30,6 +31,8 @@ const passwordGenerator=()=>
 
 greenButton.addEventListener('click', function()
 {
+    copiedElv2.textContent=""
+    copiedEl.textContent=""
     passwordOne.textContent = passwordGenerator();
     passwordTwo.textContent = passwordGenerator();
 })
@@ -38,10 +41,13 @@ greenButton.addEventListener('click', function()
     passwordOne.addEventListener('click', function()
 {
     navigator.clipboard.writeText(passwordOne.textContent)
-    copiedEl.textContent="Copied to clipboard"
+        copiedElv2.textContent=" "
+        copiedEl.textContent="Copied to clipboard"
 })
 
 passwordTwo.addEventListener('click', function()
 {
     navigator.clipboard.writeText(passwordTwo.textContent)
+    copiedEl.textContent=" "
+    copiedElv2.textContent="Copied to clipboard"
 })
